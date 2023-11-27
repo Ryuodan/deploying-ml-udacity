@@ -7,7 +7,8 @@ import joblib
 import pytest
 import pandas as pd
 import sys
-#os.pa
+sys.path.append('.')
+
 
 cat_features = [
     "workclass",

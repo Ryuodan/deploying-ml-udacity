@@ -1,5 +1,6 @@
 Working in a command line environment is recommended for ease of use with git and dvc. If on Windows, WSL1 or 2 is recommended.
 
+![screenshot](/Screenshot%202023-11-27%20at%202.36.28%E2%80%AFPM.png)
 # Environment Set up
 * Download and install conda if you don’t have it already.
     * Use the supplied requirements file to create a new environment, or
@@ -73,3 +74,4 @@ To use your new S3 bucket from the AWS CLI you will need to create an IAM user w
 * Set up DVC on Heroku using the instructions contained in the starter directory.
 * Set up access to AWS on Heroku, if using the CLI: `heroku config:set AWS_ACCESS_KEY_ID=xxx AWS_SECRET_ACCESS_KEY=yyy`
 * Write a script that uses the requests module to do one POST on your live API.
+

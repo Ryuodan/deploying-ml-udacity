@@ -11,15 +11,16 @@ from starter.ml.data import process_data
 from starter.ml.model import inference
 
 cat_features = [
-        'workclass',
-        'education',
-        'marital-status',
-        'occupation',
-        'relationship',
-        'race',
-        'sex',
-        'native-country',
-    ]
+    'workclass',
+    'education',
+    'marital-status',
+    'occupation',
+    'relationship',
+    'race',
+    'sex',
+    'native-country',
+]
+
 
 class Item(BaseModel):
     age: int = Field(examples=[20])
@@ -27,7 +28,9 @@ class Item(BaseModel):
     fnlgt: int = Field(examples=[77516])
     education: str = Field(examples=['Bachelors'])
     education_num: int = Field(alias='education-num', examples=[13])
-    marital_status: str = Field(alias='marital-status', examples=['Never-married'])
+    marital_status: str = Field(
+        alias='marital-status',
+        examples=['Never-married'])
     occupation: str = Field(examples=['Adm-clerical'])
     relationship: str = Field(examples=['Not-in-family'])
     race: str = Field(examples=['White'])
@@ -35,7 +38,9 @@ class Item(BaseModel):
     capital_gain: int = Field(alias='capital-gain', examples=[2174])
     capital_loss: int = Field(alias='capital-loss', examples=[0])
     hours_per_week: int = Field(alias='hours-per-week', examples=[40])
-    native_country: str = Field(alias='native-country', examples=['United-States'])
+    native_country: str = Field(
+        alias='native-country',
+        examples=['United-States'])
 
 
 # load model
@@ -54,13 +59,14 @@ async def hello():
 
 @app.post('/prediction')
 async def predict(input_data: Item):
-    data = pd.DataFrame({k: v for k,v in input_data.dict(by_alias=True).items()}, index=[0])
+    data = pd.DataFrame(
+        {k: v for k, v in input_data.dict(by_alias=True).items()}, index=[0])
     X, _, _, _ = process_data(
-                    data, categorical_features=cat_features, label=None, training=False,
-                    encoder=encoder, lb=lb
-                )
+        data, categorical_features=cat_features, label=None, training=False,
+        encoder=encoder, lb=lb
+    )
     y_pred = inference(model, X)
-    y_pred_inverse =  lb.inverse_transform(y_pred)[0]
+    y_pred_inverse = lb.inverse_transform(y_pred)[0]
     return {'Predicted Income -> ': y_pred_inverse}
 
 if __name__ == "__main__":

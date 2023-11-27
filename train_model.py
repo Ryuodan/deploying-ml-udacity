@@ -8,15 +8,21 @@ import joblib
 
 from ml.model import compute_model_metrics
 
+
 def slice_census(data, cat_features):
     """ Function for evaluate model on slice of dataset """
-    
+
     train, test = train_test_split(data, test_size=0.20)
 
     model = joblib.load('model/model.pkl')
     encoder = joblib.load('model/encoder.pkl')
     lb = joblib.load('model/lb.pkl')
-    slice_result = {'feature': [], 'category': [], 'precision': [], 'recall': [], 'Fbeta': []}
+    slice_result = {
+        'feature': [],
+        'category': [],
+        'precision': [],
+        'recall': [],
+        'Fbeta': []}
 
     for cat in cat_features:
         for cls in test[cat].unique():
@@ -35,9 +41,10 @@ def slice_census(data, cat_features):
             slice_result['precision'].append(precision)
             slice_result['recall'].append(recall)
             slice_result['Fbeta'].append(fbeta)
-    
+
     df = pd.DataFrame.from_dict(slice_result)
     df.to_csv('slice_output.txt', index=False)
+
 
 # Initialize logging
 logging.basicConfig(filename='logging.log',
@@ -53,11 +60,12 @@ datapath = "../data/census.csv"
 data = pd.read_csv(datapath)
 
 
-# Optional enhancement, use K-fold cross validation instead of a train-test split.
+# Optional enhancement, use K-fold cross validation instead of a
+# train-test split.
 train, test = train_test_split(data,
-                            test_size=0.20,
-                            stratify=data['salary']
-                            )
+                               test_size=0.20,
+                               stratify=data['salary']
+                               )
 
 cat_features = [
     "workclass",
@@ -71,7 +79,7 @@ cat_features = [
 ]
 X_train, y_train, encoder, lb = process_data(
     train,
-    categorical_features=cat_features, 
+    categorical_features=cat_features,
     label="salary",
     training=True
 )
@@ -96,4 +104,3 @@ logger.info('Saving model')
 joblib.dump(model, 'model/model.pkl')
 joblib.dump(encoder, 'model/encoder.pkl')
 joblib.dump(lb, 'model/lb.pkl')
-

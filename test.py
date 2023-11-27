@@ -1,13 +1,13 @@
-import sys
-os.pa
-import pandas as pd
-import pytest
-import joblib
-from sklearn.ensemble import RandomForestClassifier
-from sklearn.model_selection import train_test_split
-from starter.ml.data import process_data
-from fastapi.testclient import TestClient
 from main import app
+from fastapi.testclient import TestClient
+from starter.ml.data import process_data
+from sklearn.model_selection import train_test_split
+from sklearn.ensemble import RandomForestClassifier
+import joblib
+import pytest
+import pandas as pd
+import sys
+#os.pa
 
 cat_features = [
     "workclass",
@@ -19,6 +19,7 @@ cat_features = [
     "sex",
     "native-country",
 ]
+
 
 def test_data():
     """ Test data csv """
@@ -44,9 +45,10 @@ def test_model():
 
     model = joblib.load('model/model.pkl')
     assert isinstance(model, RandomForestClassifier)
-    
+
 
 client = TestClient(app)
+
 
 def test_get():
     """ Test the root welcome page """
@@ -77,6 +79,7 @@ def test_post_above():
 
     assert r.status_code == 200
     assert r.json() == {'Predicted Income': ' >50K'}
+
 
 def test_post_below():
     """ Test the output for salary is <50k """

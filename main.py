@@ -67,7 +67,7 @@ async def predict(input_data: Item):
     )
     y_pred = inference(model, X)
     y_pred_inverse = lb.inverse_transform(y_pred)[0]
-    return {'Predicted Income -> ': y_pred_inverse}
+    return {'Predicted Income': y_pred_inverse}
 
 if __name__ == "__main__":
     uvicorn.run('main:app', host='0.0.0.0', port=5000, reload=True)

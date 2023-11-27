@@ -1,17 +1,15 @@
-from main import app
-from fastapi.testclient import TestClient
 import sys
 sys.path.append('.')
-
+from fastapi.testclient import TestClient
+from main import app
 
 client = TestClient(app)
-    
 
 def test_get():
     """ Test the root welcome page """
     r = client.get('/')
     assert r.status_code == 200
-    assert r.json() == {'message': 'Hello World'}
+    assert r.json() == {'message': 'Hello World!'}
 
 
 def test_post_above():
@@ -36,7 +34,6 @@ def test_post_above():
 
     assert r.status_code == 200
     assert r.json() == {'Predicted Income': ' >50K'}
-
 
 def test_post_below():
     """ Test the output for salary is <50k """

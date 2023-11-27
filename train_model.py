@@ -1,8 +1,8 @@
 import logging
 # Script to train machine learning model.
 import pandas as pd
-from starter.ml.data import process_data
-from starter.ml.model import train_model
+from ml.data import process_data
+from ml.model import train_model
 from sklearn.model_selection import train_test_split
 import joblib
 
@@ -56,7 +56,7 @@ logger = logging.getLogger()
 # Add code to load in the data.
 logger.info('Read data')
 
-datapath = "../data/census.csv"
+datapath = "data/census_cleaned.csv"
 data = pd.read_csv(datapath)
 
 

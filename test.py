@@ -1,13 +1,9 @@
 from main import app
-from fastapi.testclient import TestClient
-from starter.ml.data import process_data
+from ml.data import process_data
 from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestClassifier
 import joblib
-import pytest
 import pandas as pd
-import sys
-sys.path.append('.')
 
 
 cat_features = [
@@ -25,14 +21,14 @@ cat_features = [
 def test_data():
     """ Test data csv """
 
-    data = pd.read_csv('data/census_clean.csv')
+    data = pd.read_csv('data/census_cleaned.csv')
     assert data.shape[0] > 0
 
 
 def test_process_data():
     """ Test process data """
 
-    data = pd.read_csv('data/census_clean.csv')
+    data = pd.read_csv('data/census_cleaned.csv')
     train, test = train_test_split(data, test_size=0.20)
 
     X_train, y_train, _, _ = process_data(

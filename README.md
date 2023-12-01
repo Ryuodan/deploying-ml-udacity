@@ -75,3 +75,14 @@ To use your new S3 bucket from the AWS CLI you will need to create an IAM user w
 * Set up access to AWS on Heroku, if using the CLI: `heroku config:set AWS_ACCESS_KEY_ID=xxx AWS_SECRET_ACCESS_KEY=yyy`
 * Write a script that uses the requests module to do one POST on your live API.
 
+
+## Needed screenshots
+
+1- Making github-action and passing flake8 and pytest
+![screenshot](/continuous_integration.png)
+
+Include a screenshot of your browser receiving the contents of the GET you implemented on the root domain. Name this screenshot live_get.png.
+![screenshot](/live_get.png)
+
+Write a script that POSTS to the API using the requests module and returns both the result of model inference and the status code. Include a screenshot of the result. Name this live_post.png.
+![screenshot](/live_post.png)

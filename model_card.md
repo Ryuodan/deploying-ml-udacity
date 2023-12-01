@@ -1,7 +1,5 @@
 # Model Card
 
-<!-- For additional information see the Model Card paper: https://arxiv.org/pdf/1810.03993.pdf -->
-
 ## Model Details
 
 - **Model Name**: Random Forest Classifier
@@ -49,11 +47,3 @@ The evaluation data is a subset of the same dataset used for training. Here, I s
 - Recall: 0.66
 - F1-beta: 0.7
 
-<!-- ## Ethical Considerations
-- The dataset used for training and evaluation is anonymized and does not contain personally identifiable information (PII).
-
-- Fairness considerations were made to ensure the model does not discriminate against any demographic group.
-
-- There is an obvious difference result among all the race feature.
-## Caveats and Recommendations
-Consider incorporating additional features or external data sources to improve predictive accuracy -->
